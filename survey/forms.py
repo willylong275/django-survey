@@ -12,7 +12,6 @@ from survey.models import (
     AnswerBase, AnswerInteger, AnswerRadio, AnswerSelect, AnswerSelectMultiple,
     AnswerText, Question, Response
 )
-from survey.models.answer import get_real_type_answer
 from survey.signals import survey_completed
 from survey.widgets import ImageSelectWidget
 
@@ -81,9 +80,7 @@ class ResponseForm(models.ModelForm):
         if response is None:
             return None
         try:
-            base_answer = AnswerBase.objects.get(question=question,
-                                                 response=response)
-            return get_real_type_answer(base_answer)
+            return AnswerBase.objects.get(question=question, response=response)
         except AnswerBase.DoesNotExist:
             return None
 

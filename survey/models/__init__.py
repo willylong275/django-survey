@@ -8,7 +8,7 @@ import sys
 
 from .answer import (
     AnswerBase, AnswerInteger, AnswerRadio, AnswerSelect, AnswerSelectMultiple,
-    AnswerText, get_real_type_answer
+    AnswerText
 )
 from .category import Category
 from .question import Question
@@ -18,4 +18,4 @@ from .survey import Survey
 
 __all__ = ["Category", "AnswerBase", "AnswerInteger", "AnswerRadio",
            "AnswerSelect", "AnswerSelectMultiple", "AnswerText", "Category",
-           "Response", "Survey", "Question", "get_real_type_answer"]
+           "Response", "Survey", "Question"]

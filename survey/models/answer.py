@@ -10,6 +10,7 @@ import logging
 
 from django.core.exceptions import ValidationError
 from django.db import models
+from polymorphic.models import PolymorphicModel
 
 from .question import Question
 from .response import Response
@@ -17,7 +18,7 @@ from .response import Response
 LOGGER = logging.getLogger(__name__)
 
 
-class AnswerBase(models.Model):
+class AnswerBase(PolymorphicModel):
 
     question = models.ForeignKey(Question, related_name="answers")
     response = models.ForeignKey(Response, related_name="answers")
@@ -54,7 +55,6 @@ class AnswerBase(models.Model):
 class AnswerText(AnswerBase):
     body = models.TextField(blank=True, null=True)
 
-
 class AnswerRadio(AnswerBase):
     body = models.TextField(blank=True, null=True)
 
@@ -69,18 +69,3 @@ class AnswerSelectMultiple(AnswerBase):
 
 class AnswerInteger(AnswerBase):
     body = models.IntegerField(blank=True, null=True)
-
-
-def get_real_type_answer(answer):
-    """ Permit to recover a child answer class from the AnswerBase object.
-
-    :param AnswerBase answer: The AnswerBase to convert to its real type. """
-    for class_ in [AnswerText, AnswerRadio, AnswerSelect, AnswerSelectMultiple,
-                   AnswerInteger]:
-        try:
-            return class_.objects.get(response=answer.response,
-                                      question=answer.question)
-        except class_.DoesNotExist:
-            continue
-    # Probably a real AnswerBase
-    return answer
