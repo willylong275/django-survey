@@ -18,6 +18,13 @@ print("\033[33m"
       " remove django-rosetta from the installed apps in the settings."
       "\033[39m")
 
+print("\033[33m"
+      "This version permit to use python 2.7 by using the last compatible "
+      "django version and last compatible django-survey-and-report version. But"
+      " you won't get the latest updates. Python 3 is available since 2008. Yo"
+      "u should consider using python3+ and the latest version of this project."
+      "\033[39m")
+
 DEBUG = True
 ROOT = os.path.dirname(os.path.abspath(__file__))
 CSV_DIR = os.path.join(ROOT, "csv")
