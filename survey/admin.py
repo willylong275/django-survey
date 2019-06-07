@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from survey.models import Answer, Category, Question, Response, Survey
+from survey.models import Answer, Category, Question, Response, Survey, Queues, Assignments
 
 from .actions import make_published
 
@@ -40,8 +40,17 @@ class ResponseAdmin(admin.ModelAdmin):
     # specifies the order as well as which fields to act on
     readonly_fields = ("survey", "created", "updated", "interview_uuid", "user")
 
+class AssignmentInline(admin.TabularInline):
+    list_display = ("alert_id", "user_id", "queue_id")
+    extra = 0
+    model = Assignments
 
-# admin.site.register(Question, QuestionInline)
-# admin.site.register(Category, CategoryInline)
+class QueueAdmin(admin.ModelAdmin):
+    list_display = ("name", "survey_id")
+    inlines = [AssignmentInline]
+
+
+
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Response, ResponseAdmin)
+admin.site.register(Queues, QueueAdmin)

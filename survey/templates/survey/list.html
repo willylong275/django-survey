@@ -2,13 +2,37 @@
 {% load i18n %}
 
 {% block body %}
-<div id="intro">
-	<h1>{% trans "Welcome to the Django Survey app"%}</h1>
-
-	<ul>
-		{% for survey in surveys %}
-		<li><a href="{{ survey.get_absolute_url }}">{% trans "Take the Survey"%} {{survey.name}}</a></li>
-		{% endfor %}
-	</div>
-</div>
+    <div id="intro">
+        <h1>{% trans "Survey With Alert ID"%}</h1>
+        <ul>
+            {% for survey in surveys %}
+            <li><a href="{{ survey.get_absolute_url }}">{{survey.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="intro">
+        <h1>{% trans "Queued Alert Surveys Assigned To Me"%}</h1>
+        <ul>
+            {% for assigment in my_assigments %}
+            <li><a href="{{ assigment.queue_id.survey.get_absolute_url }}?assignment_id={{assigment.id}}">{{assigment.alert_id}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="intro">
+        <h1>{% trans "Assign Queued Alerts To Me"%}</h1>
+        <ul>
+            {% for assigment in all_assignments %}
+{#            #<li><a href="/survey/test/?assignment_id={{assignment.id}}">{{assigment.alert_id}}</a></li>#}
+            <li><a href="/survey/test/?assignment_id={{ assigment.id }}">{{assigment.alert_id}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="intro">
+        <h1>{% trans "My Completed Queue Assignments"%}</h1>
+            <ul>
+                {% for assigment in my_completed_assigments %}
+                    <li>{{assigment.alert_id}}</li>
+                {% endfor %}
+            </ul>
+    </div>
 {% endblock %}

@@ -5,12 +5,14 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 
 from survey.forms import ResponseForm
-from survey.models import Category, Survey
+from survey.models import Category, Survey, Assignments
 
 
 class SurveyDetail(View):
     def get(self, request, *args, **kwargs):
+
         survey = get_object_or_404(Survey, is_published=True, id=kwargs["id"])
+
         if survey.template is not None and len(survey.template) > 4:
             template_name = survey.template
         else:
@@ -25,7 +27,9 @@ class SurveyDetail(View):
             survey=survey, user=request.user, step=kwargs.get("step", 0)
         )
         context = {"response_form": form, "survey": survey, "categories": categories}
-
+        if request.GET.get('assignment_id'):
+            context['assignment'] = get_object_or_404(Assignments,  id=request.GET.get('assignment_id'))
+             # Assignments.objects.filter(id=request.GET.get('assignment_id'))
         return render(request, template_name, context)
 
     def post(self, request, *args, **kwargs):
@@ -44,7 +48,10 @@ class SurveyDetail(View):
             for key, value in list(form.cleaned_data.items()):
                 request.session[session_key][key] = value
                 request.session.modified = True
-
+            if kwargs.get('assignment_id'):
+                assignment_object = Assignments.objects.get(id=kwargs['assignment_id'])
+                assignment_object.completed=True
+                assignment_object.save()
             next_url = form.next_step_url()
             response = None
             if survey.display_by_question:

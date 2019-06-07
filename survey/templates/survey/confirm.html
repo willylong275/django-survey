@@ -1,7 +1,7 @@
 {% extends 'survey/base.html' %}
 {% load i18n %}
 
-{% block title %}{% trans "Survey submitted" %}{% endblock title %}
+{% block title %}{% trans "Survey Submitted!" %}{% endblock title %}
 
 {% block body %}
 <h1>{% trans "Survey submitted"%}</h1>
@@ -9,8 +9,11 @@
     <div class="alert alert-success">
        {% trans "Thanks! Your answers have been saved" %}
     </div>
-    <div class="alert alert-info">
-       {% trans "You can always come back and change them." %}
-    </div>
+
+    <html>
+        <meta http-equiv="refresh" content="1;url=survey/index/" />
+         <button><a href="/survey">Home</a></button>
+         <button><a href="/survey">Do Another!</a></button>
+    </html>
 </p>
 {% endblock %}

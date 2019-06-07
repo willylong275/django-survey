@@ -13,6 +13,7 @@ class Survey(models.Model):
     need_logged_user = models.BooleanField(
         _("Only authenticated users can see it and answer it")
     )
+    queue_survey = models.BooleanField(_("Survey Created For Queue Workflow"), default=False)
     display_by_question = models.BooleanField(_("Display by question"))
     template = models.CharField(_("Template"), max_length=255, null=True, blank=True)
 

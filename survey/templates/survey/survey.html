@@ -10,8 +10,9 @@
 
 {% block body %}
 	<h1> {{survey.name}} </h1>
+    {% if assignment %}<h2>Alert ID: {{assignment.alert_id}}</h2> {% endif %}
 	<div class="survey-description"> {{survey.description|safe}} </div>
-	<div><form action="{% url 'survey-detail' id=survey.id %}" method="post">
+	<div><form action="{% url 'survey-detail' id=survey.id step=0 assignment_id=assignment.id %}" method="post">
 	    {% csrf_token %}
         {% for category in categories %}
             <h3> {{category}} </h3>

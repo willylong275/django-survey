@@ -11,5 +11,7 @@ from .category import Category
 from .question import Question
 from .response import Response
 from .survey import Survey
+from .queues import Queues
+from. assignments import Assignments
 
-__all__ = ["Category", "Answer", "Category", "Response", "Survey", "Question"]
+__all__ = ["Category", "Answer", "Category", "Response", "Survey", "Question", "Queues", "Assignments"]

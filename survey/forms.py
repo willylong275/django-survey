@@ -59,13 +59,13 @@ class ResponseForm(models.ModelForm):
         :rtype: Response or None"""
         if not self.user.is_authenticated:
             return None
-        try:
-            return Response.objects.get(user=self.user, survey=self.survey)
-        except Response.DoesNotExist:
-            LOGGER.debug(
-                "No saved response for '%s' for user %s", self.survey, self.user
-            )
-            return None
+        # try:
+        #     return Response.objects.get(user=self.user, survey=self.survey)
+        # except Response.DoesNotExist:
+        #     LOGGER.debug(
+        #         "No saved response for '%s' for user %s", self.survey, self.user
+        #     )
+        return None
 
     def _get_preexisting_answer(self, question):
         """ Recover a pre-existing answer in database.
@@ -75,13 +75,13 @@ class ResponseForm(models.ModelForm):
         :param Question question: The question we want to recover in the
         response.
         :rtype: Answer or None"""
-        response = self._get_preexisting_response()
-        if response is None:
-            return None
-        try:
-            return Answer.objects.get(question=question, response=response)
-        except Answer.DoesNotExist:
-            return None
+        # response = self._get_preexisting_response()
+        # if response is None:
+        #     return None
+        # try:
+        #     return Answer.objects.get(question=question, response=response)
+        # except Answer.DoesNotExist:
+        return None
 
     def get_question_initial(self, question, data):
         """ Get the initial value that we should use in the Form
