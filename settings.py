@@ -173,4 +173,4 @@ LOGIN_EXEMPT_URLS=(
     # r'/accounts/register/',
 )
 
-ALLOWED_HOSTS = ['django-survey-env.epm36yrvmh.us-east-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['django-survey-env.epm36yrvmh.us-east-1.elasticbeanstalk.com', '127.0.0.1']
