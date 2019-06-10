@@ -127,8 +127,13 @@ INSTALLED_APPS = (
     "survey",
     "bootstrapform",
     "rosetta",
+    'social_django',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 LOCALE_PATHS = (os.path.join(ROOT, "survey", "locale"),)
 LANGUAGE_CODE = "en"
 LANGUAGES = (
@@ -165,5 +170,6 @@ LOGIN_URL = '/accounts/login'
 
 LOGIN_EXEMPT_URLS=(
     r'/accounts/login/',
+    # r'/accounts/register/',
 )
 
