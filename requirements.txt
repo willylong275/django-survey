@@ -15,7 +15,6 @@ django-bootstrap-modal-forms==1.4.2
 django-popup-forms==1.0.3
 django-registration==3.0.1
 django-rosetta==0.9.3
--e git+git@github.com:willylong275/django-survey.git@025fb8a733031fe170eb8491bc10c1c316e45759#egg=django_survey_and_report
 django-tastypie==0.14.2
 docopt==0.6.2
 entrypoints==0.3
