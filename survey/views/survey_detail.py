@@ -15,13 +15,16 @@ class SurveyDetail(View):
 
         if survey.template is not None and len(survey.template) > 4:
             template_name = survey.template
+
         else:
             if survey.display_by_question:
                 template_name = "survey/survey.html"
             else:
                 template_name = "survey/one_page_survey.html"
+
         if survey.need_logged_user and not request.user.is_authenticated:
             return redirect("%s?next=%s" % (settings.LOGIN_URL, request.path))
+
         categories = Category.objects.filter(survey=survey).order_by("order")
         form = ResponseForm(
             survey=survey, user=request.user, step=kwargs.get("step", 0)
@@ -29,7 +32,7 @@ class SurveyDetail(View):
         context = {"response_form": form, "survey": survey, "categories": categories}
         if request.GET.get('assignment_id'):
             context['assignment'] = get_object_or_404(Assignments,  id=request.GET.get('assignment_id'))
-             # Assignments.objects.filter(id=request.GET.get('assignment_id'))
+
         return render(request, template_name, context)
 
     def post(self, request, *args, **kwargs):

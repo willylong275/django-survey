@@ -5,4 +5,6 @@ from survey.views.index_view import IndexView
 from survey.views.survey_completed import SurveyCompleted
 from survey.views.survey_detail import SurveyDetail
 from survey.views.queue_assignment import QueueAssignment
-__all__ = ["SurveyCompleted", "IndexView", "ConfirmView", "SurveyDetail", "QueueAssignment"]
+from survey.views.survey_landing import SurveyLanding
+from survey.views.ajax_template import AjaxTemplateMixin
+__all__ = ["SurveyCompleted", "IndexView", "ConfirmView", "SurveyDetail", "QueueAssignment", "SurveyLanding","AjaxTemplateMixin"]

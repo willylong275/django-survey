@@ -7,9 +7,5 @@
   <div> Successful log out </div>
 
   <h2>Login again ?</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+ <a href="/accounts/login" class="f90-logout-button">Login</a>
 {% endblock %}

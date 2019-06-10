@@ -43,7 +43,4 @@ class QueueAssignment(TemplateView):
 
         context["my_completed_assigments"] = Assignments.objects.filter(user_id=self.request.user.id, completed=True)
 
-
-
-
         return context

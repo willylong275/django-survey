@@ -2,37 +2,51 @@
 {% load i18n %}
 
 {% block body %}
-    <div id="intro">
+    <div id="Survey With Alert ID">
         <h1>{% trans "Survey With Alert ID"%}</h1>
+        <html>{{ survey.get_absolute_url }}</html>
         <ul>
             {% for survey in surveys %}
             <li><a href="{{ survey.get_absolute_url }}">{{survey.name}}</a></li>
             {% endfor %}
         </ul>
     </div>
-    <div id="intro">
-        <h1>{% trans "Queued Alert Surveys Assigned To Me"%}</h1>
+
+
+
+    <div id="Alert Surveys Assigned To Me">
+        <h1>{% trans "Alert Surveys Assigned To Me"%}</h1>
+        {% if not my_survey_names %}
+            <html> - No Existing Assigned Surveys</html>
+        {% endif %}
         <ul>
-            {% for assigment in my_assigments %}
-            <li><a href="{{ assigment.queue_id.survey.get_absolute_url }}?assignment_id={{assigment.id}}">{{assigment.alert_id}}</a></li>
+            {% for k, v in my_survey_names.items %}
+            <li><a href=landing/{{v}}>{{k}}</a></li>
             {% endfor %}
         </ul>
     </div>
-    <div id="intro">
-        <h1>{% trans "Assign Queued Alerts To Me"%}</h1>
-        <ul>
-            {% for assigment in all_assignments %}
+
+
+
+{#    <div id="intro3">#}
+{#        <h1>{% trans "Assign Queued Alerts To Me"%}</h1>#}
+{#        <ul>#}
+{#            {% for assigment in all_assignments %}#}
 {#            #<li><a href="/survey/test/?assignment_id={{assignment.id}}">{{assigment.alert_id}}</a></li>#}
-            <li><a href="/survey/test/?assignment_id={{ assigment.id }}">{{assigment.alert_id}}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div id="intro">
-        <h1>{% trans "My Completed Queue Assignments"%}</h1>
-            <ul>
-                {% for assigment in my_completed_assigments %}
-                    <li>{{assigment.alert_id}}</li>
-                {% endfor %}
-            </ul>
-    </div>
+{#            <li><a href="/survey/test/?assignment_id={{ assigment.id }}">{{assigment.alert_id}}</a></li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    </div>#}
+
+
+
+
+{#    <div id="intro">#}
+{#        <h1>{% trans "My Completed Queue Assignments"%}</h1>#}
+{#            <ul>#}
+{#                {% for assigment in my_completed_assigments %}#}
+{#                    <li>{{assigment.alert_id}}</li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#    </div>#}
 {% endblock %}

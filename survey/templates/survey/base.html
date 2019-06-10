@@ -9,7 +9,16 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'survey/css/custom.css' %}" />
   </head>
   <body>
+{#      {% if user.is_authenticated %}#}
+{#     {% else %}#}
+{#     <meta http-equiv=“Refresh” content=“0; url= accounts/login/”>#}
+{#     {% endif %}#}
+
     <div class="container" id="wrap">
+        <div align="right">
+            <a href="/accounts/logout" class="f90-logout-button">Logout</a>
+        </div>
+
 	   {% block wrapper %} {% endblock %}
         <div class="well" id="container-main">
 	       {% block body %}	{% endblock %}

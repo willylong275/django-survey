@@ -106,8 +106,11 @@ MIDDLEWARE = (
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'survey.middleware.LoginRequiredMiddleware',
 )
-
+MIDDLEWARE_CLASSES = (
+    'survey.middleware.LoginRequiredMiddleware',
+)
 ROOT_URLCONF = "urls"
 WSGI_APPLICATION = "wsgi.application"
 
@@ -120,6 +123,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    'bootstrap_modal_forms',
     "survey",
     "bootstrapform",
     "rosetta",
@@ -136,7 +140,7 @@ LANGUAGES = (
     ("zh", "Chinese"),
 )
 
-LOGIN_REDIRECT_URL = "/survey"
+LOGIN_REDIRECT_URL = "/"
 
 LOGGING = {
     "version": 1,
@@ -157,3 +161,9 @@ LOGGING = {
         }
     },
 }
+LOGIN_URL = '/accounts/login'
+
+LOGIN_EXEMPT_URLS=(
+    r'/accounts/login/',
+)
+

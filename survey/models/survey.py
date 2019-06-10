@@ -36,3 +36,5 @@ class Survey(models.Model):
 
     def get_absolute_url(self):
         return reverse("survey-detail", kwargs={"id": self.pk})
+    def get_landing_url(self):
+        return reverse("survey-landing", kwargs={"id": self.pk})

@@ -1,0 +1,22 @@
+{% extends 'survey/base.html' %}
+{% load i18n %}
+
+{% block body %}
+    <div id="Survey Name">
+        <h1>{{ survey.name }}</h1>
+    </div>
+
+    <div id="current survey assignments">
+
+        <h2>{% trans "Alert Worklist:"%}</h2>
+        <p3>Select each alert id to complete:</p3>
+        <ul>
+            {% for assignment in my_assignments %}
+                <li>
+                    <a href="{{ survey.get_absolute_url }}?assignment_id={{ assignment.id }}">{{assignment.alert_id}}</a>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

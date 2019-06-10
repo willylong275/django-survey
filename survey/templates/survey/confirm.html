@@ -9,11 +9,11 @@
     <div class="alert alert-success">
        {% trans "Thanks! Your answers have been saved" %}
     </div>
-
+{% trans "Redirecting..." %}
     <html>
-        <meta http-equiv="refresh" content="1;url=survey/index/" />
-         <button><a href="/survey">Home</a></button>
-         <button><a href="/survey">Do Another!</a></button>
+        <meta http-equiv="refresh" content="2;url=/survey" />
+{#         <button><a href="/survey">Home</a></button>#}
+{#         <button><a href="/survey">Do Another!</a></button>#}
     </html>
 </p>
 {% endblock %}
